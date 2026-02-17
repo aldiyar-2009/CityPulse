@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../styles/EventCard.module.css';
+import styles from '../styles/Eventcard.module.css'; // маленькая 'c'
 
 /* ---------- Иконка-стрелка ---------- */
 function ArrowIcon() {
