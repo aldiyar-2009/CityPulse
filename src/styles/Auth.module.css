@@ -1,0 +1,697 @@
+/* ============================================================
+   CityPulse — Auth.module.css
+   Стили страницы авторизации / регистрации
+   ============================================================ */
+
+/* ============================================================
+   СТРАНИЦА
+   ============================================================ */
+.page {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Декоративные орбы */
+.orb1 {
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 140, 0, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+.orb2 {
+  position: absolute;
+  bottom: -80px;
+  left: -60px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  animation: orbFloat 10s ease-in-out infinite reverse;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-15px, 15px) scale(1.04); }
+}
+
+/* ============================================================
+   КОНТЕЙНЕР КАРТОЧКИ
+   ============================================================ */
+.container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 460px;
+}
+
+/* ============================================================
+   ЛОГОТИП
+   ============================================================ */
+.logoLink {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-decoration: none;
+  user-select: none;
+}
+
+.logoDark {
+  color: #111827;
+}
+
+.logoOrange {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   КАРТОЧКА ФОРМЫ
+   ============================================================ */
+.card {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #e5e7eb;
+  padding: 36px 36px 28px;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* ============================================================
+   ШАПКА КАРТОЧКИ
+   ============================================================ */
+.cardHeader {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.cardTitle {
+  font-size: 1.625rem;
+  font-weight: 900;
+  color: #111827;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.cardSubtitle {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   АНИМИРОВАННЫЕ ТАБЫ
+   ============================================================ */
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-bottom: 28px;
+
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+/* Движущийся фон активного таба */
+.tabsSlider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  height: calc(100% - 8px);
+  border-radius: 9px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 280ms cubic-bezier(0.34, 1.2, 0.64, 1);
+  pointer-events: none;
+}
+
+.tabBtn {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 16px;
+  border-radius: 9px;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #9ca3af;
+
+  transition: color 220ms ease;
+}
+
+.tabBtnActive {
+  color: #111827;
+}
+
+/* ============================================================
+   ФОРМА
+   ============================================================ */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ============================================================
+   ПОЛЕ ВВОДА
+   ============================================================ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  line-height: 1;
+}
+
+.fieldRequired {
+  color: #ef4444;
+}
+
+/* Обёртка поля (иконка + input + кнопка глаза) */
+.fieldInputWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background-color: #f9fafb;
+
+  transition:
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 180ms ease;
+}
+
+/* Оранжевая подсветка при фокусе */
+.fieldInputWrap:focus-within {
+  border-color: #ff8c00;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.12);
+}
+
+/* Красная рамка при ошибке */
+.fieldInputWrapError {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.02);
+}
+
+.fieldInputWrapError:focus-within {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  color: #9ca3af;
+  pointer-events: none;
+  flex-shrink: 0;
+  transition: color 220ms ease;
+}
+
+.fieldInputWrap:focus-within .fieldIcon {
+  color: #ff8c00;
+}
+
+.fieldInputWrapError .fieldIcon {
+  color: #ef4444;
+}
+
+.fieldInput {
+  width: 100%;
+  padding: 12px 40px 12px 42px;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-radius: 12px;
+
+  font-size: 0.9375rem;
+  color: #111827;
+}
+
+.fieldInput::placeholder {
+  color: #9ca3af;
+}
+
+/* Кнопка «показать/скрыть пароль» */
+.fieldEyeBtn {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  color: #9ca3af;
+  cursor: pointer;
+
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.fieldEyeBtn:hover {
+  color: #374151;
+  background-color: #f3f4f6;
+}
+
+/* Сообщение об ошибке */
+.fieldError {
+  font-size: 0.8125rem;
+  color: #ef4444;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* Подсказка */
+.fieldHint {
+  font-size: 0.8125rem;
+  color: #9ca3af;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   СТРОКА «ЗАПОМНИТЬ + ЗАБЫЛИ ПАРОЛЬ»
+   ============================================================ */
+.formFooterRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Чекбокс «Запомнить» */
+.rememberLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.rememberCheck {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.rememberBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid #d1d5db;
+  background-color: #ffffff;
+  color: transparent;
+  flex-shrink: 0;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.rememberCheck:checked + .rememberBox {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  border-color: #ff8c00;
+  color: #ffffff;
+}
+
+.rememberText {
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 500;
+  user-select: none;
+}
+
+.forgotLink {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ff8c00;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.forgotLink:hover {
+  color: #ff4500;
+}
+
+/* ============================================================
+   ИНДИКАТОР НАДЁЖНОСТИ ПАРОЛЯ
+   ============================================================ */
+.strengthWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.strengthBars {
+  display: flex;
+  gap: 5px;
+  flex: 1;
+}
+
+.strengthBar {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background-color 300ms ease;
+}
+
+.strengthLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 60px;
+  text-align: right;
+  transition: color 300ms ease;
+}
+
+/* ============================================================
+   ЧЕКБОКС СОГЛАСИЯ
+   ============================================================ */
+.agreeWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.agreeLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.agreeLabelError .agreeText {
+  color: #ef4444;
+}
+
+.agreeCheck {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.agreeBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid #d1d5db;
+  background-color: #ffffff;
+  color: transparent;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.agreeBoxChecked {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  border-color: #ff8c00;
+  color: #ffffff;
+}
+
+.agreeText {
+  font-size: 0.875rem;
+  color: #374151;
+  line-height: 1.5;
+  user-select: none;
+}
+
+.agreeLink {
+  color: #ff8c00;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  font-weight: 600;
+  transition: text-decoration-color 180ms ease;
+}
+
+.agreeLink:hover {
+  text-decoration-color: #ff8c00;
+}
+
+/* ============================================================
+   КНОПКА «ОТПРАВИТЬ»
+   ============================================================ */
+.submitBtn {
+  width: 100%;
+  padding: 15px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  color: #ffffff;
+
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.38);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    opacity 200ms ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(255, 69, 0, 0.48);
+}
+
+.submitBtn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Спиннер загрузки внутри кнопки */
+.submitBtnLoader {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   РАЗДЕЛИТЕЛЬ «ИЛИ»
+   ============================================================ */
+.dividerOr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 16px;
+}
+
+.dividerOrLine {
+  flex: 1;
+  height: 1px;
+  background-color: #e5e7eb;
+}
+
+.dividerOrText {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   КНОПКА OAUTH (Google)
+   ============================================================ */
+.oauthBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1.5px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #374151;
+  cursor: pointer;
+
+  font-size: 0.9375rem;
+  font-weight: 600;
+
+  transition:
+    border-color 200ms ease,
+    background-color 200ms ease,
+    transform 180ms ease;
+}
+
+.oauthBtn:hover {
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   ПОДСКАЗКА ПЕРЕКЛЮЧЕНИЯ
+   ============================================================ */
+.switchHint {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.switchBtn {
+  border: none;
+  background: none;
+  color: #ff8c00;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: color 180ms ease;
+}
+
+.switchBtn:hover {
+  color: #ff4500;
+}
+
+/* ============================================================
+   УСПЕШНОЕ СОСТОЯНИЕ
+   ============================================================ */
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 0;
+  gap: 12px;
+}
+
+.successIcon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 4px;
+  animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes bounceIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.successTitle {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #111827;
+  letter-spacing: -0.03em;
+}
+
+.successText {
+  font-size: 0.9375rem;
+  color: #6b7280;
+}
+
+.successSpinner {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid #e5e7eb;
+  border-top-color: #ff8c00;
+  animation: spin 0.9s linear infinite;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+@media (max-width: 500px) {
+  .card {
+    padding: 28px 20px 24px;
+    border-radius: 20px;
+  }
+
+  .cardTitle {
+    font-size: 1.375rem;
+  }
+}
+
+/* ============================================================
+   УМЕНЬШЕННАЯ АНИМАЦИЯ (a11y)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .orb1,
+  .orb2,
+  .tabsSlider,
+  .submitBtn,
+  .oauthBtn,
+  .fieldInputWrap,
+  .successIcon,
+  .successSpinner,
+  .submitBtnLoader {
+    transition: none;
+    animation: none;
+  }
+}

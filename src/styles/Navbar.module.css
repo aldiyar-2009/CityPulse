@@ -1,0 +1,482 @@
+/* ============================================================
+   CityPulse — Navbar.module.css
+   Стили фиксированного навбара
+   ============================================================ */
+
+/* ---------- Корневой элемент навбара ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky, 200);
+
+  height: var(--navbar-height, 70px);
+
+  background-color: #ffffff;
+  border-bottom: 1px solid transparent;
+
+  /*
+    Лёгкая начальная тень — едва заметная, чтобы панель
+    «отделялась» от контента даже без прокрутки.
+  */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  transition:
+    box-shadow 280ms ease,
+    border-color 280ms ease,
+    background-color 280ms ease;
+
+  will-change: box-shadow;
+}
+
+/* ---------- Состояние при прокрутке ---------- */
+.navbarScrolled {
+  background-color: rgba(255, 255, 255, 0.96);
+  border-bottom-color: #e5e7eb;
+
+  /*
+    При прокрутке тень усиливается — создаётся эффект
+    «приподнятой» панели над контентом.
+  */
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 4px 16px rgba(0, 0, 0, 0.05);
+
+  /* Лёгкое размытие фона сзади для полупрозрачности */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Внутренний контейнер (flex-строка) ---------- */
+.navbarInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  width: 100%;
+  max-width: var(--container-max-width, 1280px);
+  height: 100%;
+
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ============================================================
+   ЛОГОТИП
+   ============================================================ */
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 1px;
+
+  font-size: 1.5rem;       /* 24px */
+  font-weight: 800;        /* ExtraBold */
+  letter-spacing: -0.03em;
+  line-height: 1;
+
+  text-decoration: none;
+  user-select: none;
+
+  /* Защищаем от переноса */
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.logo:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.logo:active {
+  transform: translateY(0);
+}
+
+/* «City» — тёмный */
+.logoPrimary {
+  color: #111827;
+}
+
+/* «Pulse» — оранжевый акцент */
+.logoAccent {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   НАВИГАЦИОННЫЕ ССЫЛКИ (центр)
+   ============================================================ */
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  /* Позволяем flex-центрироваться по свободному пространству */
+  flex: 1;
+  justify-content: center;
+}
+
+/* ---------- Отдельная ссылка ---------- */
+.navLink {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  font-size: 0.9375rem;    /* 15px */
+  font-weight: 500;
+  color: #374151;
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  /*
+    Плавный переход цвета при наведении.
+    Используем все затронутые свойства явно для
+    максимальной производительности.
+  */
+  transition:
+    color 220ms ease,
+    background-color 220ms ease;
+}
+
+/* ---------- Подчёркивание-акцент (псевдоэлемент) ---------- */
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  border-radius: 2px;
+
+  background: linear-gradient(90deg, #ff8c00 0%, #ff4500 100%);
+
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Hover-состояние ---------- */
+.navLink:hover {
+  color: #ff8c00;
+  background-color: rgba(255, 140, 0, 0.06);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Active-состояние (React Router NavLink) ---------- */
+.navLinkActive {
+  color: #ff8c00;
+  background-color: rgba(255, 140, 0, 0.08);
+  font-weight: 600;
+}
+
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   КНОПКИ ДЕЙСТВИЙ (справа)
+   ============================================================ */
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ---------- Базовые стили для обеих кнопок ---------- */
+.btnLogin,
+.btnRegister {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 9px 20px;
+  border-radius: 8px;
+
+  font-size: 0.9375rem;   /* 15px */
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    color 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 180ms ease;
+}
+
+.btnLogin:active,
+.btnRegister:active {
+  transform: scale(0.97);
+}
+
+/* ---------- «Войти» — белая с оранжевой рамкой ---------- */
+.btnLogin {
+  background-color: #ffffff;
+  color: #ff8c00;
+  border: 2px solid #ff8c00;
+  box-shadow: 0 1px 2px rgba(255, 140, 0, 0.12);
+}
+
+.btnLogin:hover {
+  background-color: rgba(255, 140, 0, 0.06);
+  border-color: #ff6b00;
+  color: #ff6b00;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
+}
+
+/* ---------- «Регистрация» — оранжево-красный градиент ---------- */
+.btnRegister {
+  background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+  color: #ffffff;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 10px rgba(255, 140, 0, 0.35);
+}
+
+.btnRegister:hover {
+  background: linear-gradient(135deg, #e67e00 0%, #e03d00 100%);
+  box-shadow: 0 4px 18px rgba(255, 69, 0, 0.45);
+}
+
+/* ============================================================
+   КНОПКА МОБИЛЬНОГО МЕНЮ (бургер)
+   ============================================================ */
+.burgerBtn {
+  display: none; /* скрыт на десктопе */
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  transition: background-color 200ms ease;
+}
+
+.burgerBtn:hover {
+  background-color: rgba(255, 140, 0, 0.08);
+}
+
+/* ---------- Линии бургера ---------- */
+.burgerLine {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #374151;
+
+  transition:
+    transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 200ms ease,
+    width 250ms ease;
+
+  transform-origin: center;
+}
+
+/* ---------- Анимация бургера → крестик ---------- */
+.burgerBtnOpen .burgerLine:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burgerBtnOpen .burgerLine:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.burgerBtnOpen .burgerLine:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   ЗАТЕМНЯЮЩИЙ ОВЕРЛЕЙ (мобильное меню)
+   ============================================================ */
+.overlay {
+  position: fixed;
+  inset: var(--navbar-height, 70px) 0 0 0;
+  background-color: rgba(17, 24, 39, 0.4);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  z-index: calc(var(--z-sticky, 200) - 1);
+  animation: overlayFadeIn 250ms ease forwards;
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ — МОБИЛЬНЫЕ УСТРОЙСТВА (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Показываем кнопку бургера */
+  .burgerBtn {
+    display: flex;
+  }
+
+  /* Скрываем кнопки действий в десктопном варианте */
+  .navActions {
+    display: none;
+  }
+
+  /*
+    Навигация становится вертикальным выдвижным меню.
+    Выдвигается сверху (из-под навбара), перекрывая контент.
+  */
+  .navLinks {
+    position: fixed;
+    top: var(--navbar-height, 70px);
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 4px;
+
+    padding: 16px 16px 24px;
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+    /* Скрыто по умолчанию (снаружи экрана) */
+    transform: translateY(-110%);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+
+    z-index: var(--z-sticky, 200);
+
+    transition:
+      transform 320ms cubic-bezier(0.34, 1.2, 0.64, 1),
+      opacity 250ms ease,
+      visibility 250ms ease;
+  }
+
+  /* Открытое состояние */
+  .navLinksOpen {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  /* Ссылки занимают всю ширину */
+  .navLink {
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 1rem;
+    border-radius: 10px;
+    justify-content: flex-start;
+  }
+
+  /* Подчёркивание — скрываем на мобиле */
+  .navLink::after {
+    display: none;
+  }
+
+  /* Добавляем кнопки действий в мобильное меню */
+  .navLinksOpen::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 8px 0;
+  }
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ — МАЛЕНЬКИЕ ЭКРАНЫ (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .navbarInner {
+    padding-inline: 16px;
+  }
+
+  .logo {
+    font-size: 1.3125rem;  /* 21px */
+  }
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ — ПЛАНШЕТЫ (769px — 1024px)
+   ============================================================ */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navLink {
+    padding: 8px 10px;
+    font-size: 0.875rem;  /* 14px */
+  }
+
+  .btnLogin,
+  .btnRegister {
+    padding: 8px 14px;
+    font-size: 0.875rem;
+  }
+
+  .navbarInner {
+    gap: 16px;
+  }
+}
+
+/* ============================================================
+   ВЫСОКОКОНТРАСТНЫЙ РЕЖИМ (a11y)
+   ============================================================ */
+@media (forced-colors: active) {
+  .btnLogin {
+    border: 2px solid ButtonText;
+  }
+
+  .btnRegister {
+    forced-color-adjust: none;
+  }
+}
+
+/* ============================================================
+   УМЕНЬШЕННАЯ АНИМАЦИЯ (a11y)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .navLink,
+  .navLink::after,
+  .btnLogin,
+  .btnRegister,
+  .navbar,
+  .navLinks,
+  .burgerLine,
+  .overlay,
+  .logo {
+    transition: none;
+    animation: none;
+  }
+}
