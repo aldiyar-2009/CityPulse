@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EventCard from '../components/EventCard';
-import { mockEvents } from '../data/mockEvents';
+import { mockEvents } from '../data/Mockevents'; // Буква 'M' должна быть большой
 
 import styles from '../styles/Home.module.css';
 
