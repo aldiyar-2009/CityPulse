@@ -5,7 +5,7 @@
 
 import React, { useState, useId } from 'react';
 
-import { mockEvents, CATEGORIES } from '../data/mockEvents';
+import { mockEvents, CATEGORIES } from '../data/Mockevents';
 import styles from '../styles/Admin.module.css';
 
 /* ============================================================
