@@ -6,8 +6,7 @@
 
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-
-import { mockEvents } from '../data/mockEvents';
+import { mockEvents } from '../data/Mockevents'; // Большая буква M
 import styles from '../styles/EventPage.module.css';
 
 /* ============================================================

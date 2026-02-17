@@ -5,9 +5,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import EventCard from '../components/EventCard';
-import { mockEvents } from '../data/Mockevents'; // Буква 'M' должна быть большой
-
+import EventCard from '../components/EventCard'; // БЕЗ фигурных скобок
+import { mockEvents } from '../data/Mockevents'; // С большой буквой M
 import styles from '../styles/Home.module.css';
 
 /* ---------- Иконки ---------- */

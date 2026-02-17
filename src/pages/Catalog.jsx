@@ -6,7 +6,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import EventCard from '../components/EventCard';
+import EventCard from '../components/EventCard'; // БЕЗ фигурных скобок
 import { mockEvents, CATEGORIES } from '../data/Mockevents';
 
 import styles from '../styles/Catalog.module.css';

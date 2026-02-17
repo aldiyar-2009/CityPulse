@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 
 import Home     from './pages/Home';
-import Catalog  from './pages/Catalog';
+import Catalog  from './pages/Catalog'; 
 import EventPage from './pages/EventPage';
 import Admin    from './pages/Admin';
 import Auth     from './pages/Auth';
