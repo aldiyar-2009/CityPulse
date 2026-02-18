@@ -1,0 +1,29 @@
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.chip:hover {
+  border-color: rgba(232, 160, 32, 0.4);
+  color: var(--text);
+}
+
+.active {
+  background: rgba(232, 160, 32, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}

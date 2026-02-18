@@ -1,0 +1,10 @@
+/* Register использует те же стили что Login + добавляет fieldError */
+@import '../Login/Login.module.css';
+
+.fieldError {
+  display: block;
+  font-size: 11px;
+  color: var(--error);
+  margin-top: 5px;
+  font-family: 'DM Mono', monospace;
+}
