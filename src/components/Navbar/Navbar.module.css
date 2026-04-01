@@ -1,0 +1,176 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ff6b35;
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.links a {
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.links a.active {
+  color: #ff6b35;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnLogin,
+.btnRegister {
+  padding: 0.5rem 1.25rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btnLogin {
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.btnRegister {
+  background: #ff6b35;
+  color: white;
+  border-radius: 6px;
+}
+
+.profileSection {
+  position: relative;
+  z-index: 1001;
+}
+
+.profileBtn {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.username {
+  color: #333;
+  font-weight: 500;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 200px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+  z-index: 10000;
+}
+
+.dropdownHeader {
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: 600;
+}
+
+.dropdownEmail {
+  font-size: 0.875rem;
+  color: #666;
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+.dropdownItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+}
+
+.balance {
+  padding: 0.5rem 1rem;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 6px;
+  color: #856404;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.adminLink {
+  color: #f59e0b !important;
+  font-weight: 600;
+}
+
+.adminLink:hover {
+  color: #d97706 !important;
+}
+
+.adminProfileBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.adminBadge {
+  font-size: 10px;
+  font-weight: 700;
+  background: #f59e0b;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dropdownRole {
+  font-size: 11px;
+  color: #f59e0b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.adminDropdownItem {
+  color: #f59e0b !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+  margin-bottom: 4px;
+}
