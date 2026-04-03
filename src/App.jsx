@@ -5,8 +5,11 @@ import Footer from './components/Footer/Footer'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 
 import Home from './pages/Home/Home'
-import Catalog from './pages/Catalog/Catalog'
-import Event from './pages/Event/Event'
+import ItemDetails from './pages/ItemDetails/ItemDetails'
+import MoviesPage from './pages/Movies/MoviesPage'
+import SportsPage from './pages/Sports/SportsPage'
+import ConcertsPage from './pages/Concerts/ConcertsPage'
+import FairsPage from './pages/Fairs/FairsPage'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Profile from './pages/Profile/Profile'
@@ -34,8 +37,11 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/event/:id" element={<Event />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/sports" element={<SportsPage />} />
+          <Route path="/concerts" element={<ConcertsPage />} />
+          <Route path="/fairs" element={<FairsPage />} />
+          <Route path="/:category/:id" element={<ItemDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />

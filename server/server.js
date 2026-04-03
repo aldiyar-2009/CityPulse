@@ -5,7 +5,10 @@ const connectDB = require('./config/database');
 
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
-const eventRoutes = require('./routes/eventRoutes');
+const movieRoutes = require('./routes/movieRoutes');
+const sportRoutes = require('./routes/sportRoutes');
+const concertRoutes = require('./routes/concertRoutes');
+const fairRoutes = require('./routes/fairRoutes');
 
 connectDB();
 
@@ -36,17 +39,23 @@ if (process.env.NODE_ENV === 'development') {
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/events', eventRoutes);
+app.use('/api/movies', movieRoutes);
+app.use('/api/sports', sportRoutes);
+app.use('/api/concerts', concertRoutes);
+app.use('/api/fairs', fairRoutes);
 
 // Root info endpoint
 app.get('/', (req, res) => {
   res.json({
-    message: 'CityPulse API v1.0',
+    message: 'CityPulse API v2.0 (Redesign)',
     status: 'running',
     endpoints: {
       auth: '/api/auth',
       users: '/api/users',
-      events: '/api/events',
+      movies: '/api/movies',
+      sports: '/api/sports',
+      concerts: '/api/concerts',
+      fairs: '/api/fairs'
     },
   });
 });

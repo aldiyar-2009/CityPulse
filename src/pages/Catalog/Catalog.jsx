@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { eventsAPI } from '../../services/api'
+import { moviesAPI } from '../../services/api'
 import { useDebounce } from '../../hooks/useDebounce'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import FilterSidebar from '../../components/FilterSidebar/FilterSidebar'
@@ -28,7 +28,7 @@ function Catalog() {
       try {
         setLoading(true)
         setError('')
-        const data = await eventsAPI.getAll()
+        const data = await moviesAPI.getAll()
         setEvents(data)
       } catch (err) {
         setError('Не удалось загрузить события.')

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
-import { eventsAPI } from '../services/api';
+import { moviesAPI, sportsAPI, concertsAPI, fairsAPI } from '../services/api';
 
 const FavoritesContext = createContext(null);
 
@@ -16,9 +16,15 @@ export function FavoritesProvider({ children }) {
     }
   }, [currentUser]);
 
-  const toggleFavorite = async (eventId) => {
+  const toggleFavorite = async (eventId, eventRoute) => {
     try {
-      const data = await eventsAPI.toggleFavorite(eventId);
+      // Map route to the right api
+      let apiToCall = moviesAPI;
+      if (eventRoute === 'sports') apiToCall = sportsAPI;
+      if (eventRoute === 'concerts') apiToCall = concertsAPI;
+      if (eventRoute === 'fairs') apiToCall = fairsAPI;
+
+      const data = await apiToCall.toggleFavorite(eventId);
       setFavorites(data.favorites);
       return data.favorites;
     } catch (error) {

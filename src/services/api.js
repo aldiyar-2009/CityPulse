@@ -83,60 +83,50 @@ export const usersAPI = {
     }),
 };
 
-// ── Events API ────────────────────────────────────────────────────────────────
+// ── Categories API ────────────────────────────────────────────────────────────────
 
-export const eventsAPI = {
-  /**
-   * Get all events, optionally filtered.
-   * @param {Object} params - { category, featured, limit }
-   */
+const createCategoryAPI = (category) => ({
   getAll: (params = {}) => {
     const queryString = new URLSearchParams(params).toString();
-    return fetchAPI(`/events${queryString ? `?${queryString}` : ''}`);
+    return fetchAPI(`/${category}${queryString ? `?${queryString}` : ''}`);
   },
-
-  /** Get a single event by numeric ID */
-  getById: (id) => fetchAPI(`/events/${id}`),
-
-  /** Purchase a ticket for an event */
-  purchase: (eventId, price) =>
-    fetchAPI('/events/purchase', {
+  getById: (id) => fetchAPI(`/${category}/${id}`),
+  purchase: (itemId, price, payload = {}) =>
+    fetchAPI(`/${category}/purchase`, {
       method: 'POST',
-      body: JSON.stringify({ eventId, price }),
+      body: JSON.stringify({ itemId, price, ...payload }),
     }),
-
-  /** Toggle favorite status for an event */
-  toggleFavorite: (eventId) =>
-    fetchAPI('/events/favorite', {
+  toggleFavorite: (itemId) =>
+    fetchAPI(`/${category}/favorite`, {
       method: 'POST',
-      body: JSON.stringify({ eventId }),
+      body: JSON.stringify({ itemId }),
     }),
-
-  // Admin-only operations
-
-  /** Create a new event */
-  create: (eventData) =>
-    fetchAPI('/events', {
+  create: (data) =>
+    fetchAPI(`/${category}`, {
       method: 'POST',
-      body: JSON.stringify(eventData),
+      body: JSON.stringify(data),
     }),
-
-  /** Update an existing event */
   update: (id, updates) =>
-    fetchAPI(`/events/${id}`, {
+    fetchAPI(`/${category}/${id}`, {
       method: 'PUT',
       body: JSON.stringify(updates),
     }),
-
-  /** Delete an event */
   delete: (id) =>
-    fetchAPI(`/events/${id}`, {
+    fetchAPI(`/${category}/${id}`, {
       method: 'DELETE',
     }),
-};
+});
+
+export const moviesAPI = createCategoryAPI('movies');
+export const sportsAPI = createCategoryAPI('sports');
+export const concertsAPI = createCategoryAPI('concerts');
+export const fairsAPI = createCategoryAPI('fairs');
 
 export default {
   auth: authAPI,
   users: usersAPI,
-  events: eventsAPI,
+  movies: moviesAPI,
+  sports: sportsAPI,
+  concerts: concertsAPI,
+  fairs: fairsAPI,
 };

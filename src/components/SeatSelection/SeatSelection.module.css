@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.screen {
+  width: 80%;
+  max-width: 600px;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50% / 100% 100% 0 0;
+  box-shadow: 0 -20px 40px rgba(255, 255, 255, 0.4);
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.screenText {
+  text-align: center;
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.seatsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.rowLabel {
+  width: 40px;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  margin-right: 1rem;
+}
+
+.seat {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px 6px 4px 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: transparent;
+  transition: all 0.2s;
+}
+
+.seat:hover:not(.booked) {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.seat.selected {
+  background: #4ade80;
+  border-color: #22c55e;
+  color: #064e3b;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.seat.booked {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.1);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.seat.booked::after {
+  content: "×";
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+}
+
+.aisle {
+  width: 20px;
+}
+
+.legend {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  justify-content: center;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.legendSeat {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.legendSeat.available {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legendSeat.selected {
+  background: #4ade80;
+}
+
+.legendSeat.booked {
+  background: rgba(239, 68, 68, 0.2);
+}

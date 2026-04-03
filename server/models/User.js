@@ -36,17 +36,43 @@ const userSchema = new mongoose.Schema({
     default: 'user'
   },
   favorites: [{
-    type: Number,
-    ref: 'Event'
+    itemId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: 'favorites.itemType'
+    },
+    itemType: {
+      type: String,
+      required: true,
+      enum: ['Movie', 'Sport', 'Concert', 'Fair']
+    }
   }],
   purchasedTickets: [{
-    eventId: {
-      type: Number,
-      required: true
+    itemId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      refPath: 'purchasedTickets.itemType'
+    },
+    itemType: {
+      type: String,
+      required: true,
+      enum: ['Movie', 'Sport', 'Concert', 'Fair']
     },
     purchaseDate: {
       type: Date,
       default: Date.now
+    },
+    seats: {
+      type: [String],
+      default: []
+    },
+    quantity: {
+      type: Number,
+      default: 1
+    },
+    price: {
+      type: Number,
+      required: true
     },
     status: {
       type: String,

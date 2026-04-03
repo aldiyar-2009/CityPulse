@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import ProfileTabs from '../../components/ProfileTabs/ProfileTabs'
 import { useFavorites } from '../../context/FavoritesContext'
-import { eventsAPI } from '../../services/api'
+import { moviesAPI, sportsAPI, concertsAPI, fairsAPI } from '../../services/api'
 import EventCard from '../../components/EventCard/EventCard'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import styles from './Favorites.module.css'
@@ -13,11 +13,16 @@ function Favorites() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchAllEvents = async () => {
       try {
         setLoading(true)
-        const data = await eventsAPI.getAll()
-        setAllEvents(data)
+        const [movies, sports, concerts, fairs] = await Promise.all([
+          moviesAPI.getAll().then(res => res.map(e => ({ ...e, route: 'movies', category: 'Кино' }))),
+          sportsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'sports', category: 'Спорт' }))),
+          concertsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'concerts', category: 'Концерты' }))),
+          fairsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'fairs', category: 'Ярмарки' })))
+        ])
+        setAllEvents([...movies, ...sports, ...concerts, ...fairs])
       } catch (err) {
         setError('Не удалось загрузить события.')
         console.error(err)
@@ -25,10 +30,10 @@ function Favorites() {
         setLoading(false)
       }
     }
-    fetchEvents()
+    fetchAllEvents()
   }, [])
 
-  const favoriteEvents = allEvents.filter(e => favorites.includes(e.id))
+  const favoriteEvents = allEvents.filter(e => favorites.find(f => f.itemId === e._id))
 
   return (
     <div className={styles.page}>
@@ -45,7 +50,7 @@ function Favorites() {
           ) : favoriteEvents.length > 0 ? (
             <div className={styles.grid}>
               {favoriteEvents.map(event => (
-                <EventCard key={event.id} event={event} />
+                <EventCard key={event._id} event={event} />
               ))}
             </div>
           ) : (

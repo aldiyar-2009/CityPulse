@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { eventsAPI } from '../../services/api'
+import { moviesAPI, sportsAPI, concertsAPI, fairsAPI } from '../../services/api'
 import EventCard from '../../components/EventCard/EventCard'
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner'
 import styles from './Home.module.css'
 
-const CATEGORIES = ['Концерты', 'Спорт', 'Кино', 'Выставки', 'Театр', 'Фестивали']
+const CATEGORIES = ['Кино', 'Спорт', 'Концерты', 'Ярмарки']
 
 function Home() {
   const [events, setEvents] = useState([])
@@ -14,12 +14,22 @@ function Home() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const fetchEvents = async () => {
+    const fetchAllEvents = async () => {
       try {
         setLoading(true)
         setError('')
-        const data = await eventsAPI.getAll()
-        setEvents(data)
+        const [movies, sports, concerts, fairs] = await Promise.all([
+          moviesAPI.getAll().then(res => res.map(e => ({ ...e, route: 'movies', category: 'Кино' }))),
+          sportsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'sports', category: 'Спорт' }))),
+          concertsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'concerts', category: 'Концерты' }))),
+          fairsAPI.getAll().then(res => res.map(e => ({ ...e, route: 'fairs', category: 'Ярмарки' })))
+        ])
+        
+        // Merge and sort by date for home display
+        const allData = [...movies, ...sports, ...concerts, ...fairs]
+          .sort((a, b) => new Date(a.date) - new Date(b.date))
+        
+        setEvents(allData)
       } catch (err) {
         setError('Не удалось загрузить события. Проверьте подключение к серверу.')
         console.error('Ошибка загрузки событий:', err)
@@ -27,7 +37,7 @@ function Home() {
         setLoading(false)
       }
     }
-    fetchEvents()
+    fetchAllEvents()
   }, [])
 
   const featuredEvents = events.filter(e => e.featured)
@@ -97,7 +107,7 @@ function Home() {
               <p className={styles.heroDescription}>
                 {currentEvent.description?.slice(0, 150)}...
               </p>
-              <Link to={`/event/${currentEvent.id}`} className={styles.heroBtn}>
+              <Link to={`/${currentEvent.route}/${currentEvent._id}`} className={styles.heroBtn}>
                 Подробнее
               </Link>
             </div>
@@ -132,13 +142,13 @@ function Home() {
             <section key={category} className={styles.section} aria-label={category}>
               <div className={styles.sectionHeader}>
                 <h2 className={styles.sectionTitle}>{category}</h2>
-                <Link to={`/catalog?category=${category}`} className={styles.seeAll}>
+                <Link to={`/${categoryEvents[0].route}`} className={styles.seeAll}>
                   Смотреть все →
                 </Link>
               </div>
               <div className={styles.grid}>
                 {categoryEvents.map(event => (
-                  <EventCard key={event.id} event={event} />
+                  <EventCard key={event._id} event={event} />
                 ))}
               </div>
             </section>

@@ -6,7 +6,8 @@ function EventCard({ event }) {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(`/event/${event.id}`)
+    const routeName = event.route || 'event'
+    navigate(`/${routeName}/${event._id || event.id}`)
   }
 
   // Format date to readable format
@@ -27,17 +28,15 @@ function EventCard({ event }) {
           className={styles.poster}
           onError={(e) => { e.target.style.display = 'none' }}
         />
+        <div className={styles.gradientOverlay}></div>
+      </div>
 
-        <div className={styles.overlay}>
-          <div className={styles.category}>{event.category}</div>
-        </div>
-
-        <div onClick={(e) => e.stopPropagation()}>
-          <FavoriteButton eventId={event.id} />
-        </div>
+      <div className={styles.favoriteWrap} onClick={(e) => e.stopPropagation()}>
+        <FavoriteButton eventId={event._id || event.id} eventRoute={event.route} />
       </div>
 
       <div className={styles.info}>
+        <div className={styles.category}>{event.category || 'Событие'}</div>
         <div className={styles.title}>{event.title}</div>
         <div className={styles.meta}>
           <span className={styles.date}>{formatDate(event.date)}</span>

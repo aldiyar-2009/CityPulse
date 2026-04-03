@@ -43,8 +43,23 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/catalog" className={({ isActive }) => isActive ? styles.active : ''}>
-            События
+          <NavLink to="/movies" className={({ isActive }) => isActive ? styles.active : ''}>
+            Кино
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/sports" className={({ isActive }) => isActive ? styles.active : ''}>
+            Спорт
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/concerts" className={({ isActive }) => isActive ? styles.active : ''}>
+            Концерты
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/fairs" className={({ isActive }) => isActive ? styles.active : ''}>
+            Ярмарки
           </NavLink>
         </li>
         {isAdmin && (

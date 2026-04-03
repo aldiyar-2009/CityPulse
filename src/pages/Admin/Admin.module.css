@@ -168,4 +168,56 @@ td {
   font-size: 14px;
   cursor: pointer;
   color: var(--text-secondary, #666);
+  margin-bottom: 1rem;
+}
+
+/* ── Category Tabs ──────────────────────────────────────────── */
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0;
+}
+
+.tab {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  color: #666;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  color: #ff6b35;
+}
+
+.tabActive {
+  color: #ff6b35;
+  border-bottom-color: #ff6b35;
+}
+
+/* ── Extra fields section ──────────────────────────────────── */
+
+.extraSection {
+  background: #fff8f5;
+  border: 1px solid #ffd6c0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.extraTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ff6b35;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }

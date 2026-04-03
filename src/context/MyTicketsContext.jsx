@@ -8,6 +8,7 @@ export function MyTicketsProvider({ children }) {
   const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
+    // purchasedTickets on the user is [{ itemId, itemType, price, status, purchaseDate }]
     if (currentUser?.purchasedTickets) {
       setTickets(currentUser.purchasedTickets);
     } else {
@@ -15,31 +16,14 @@ export function MyTicketsProvider({ children }) {
     }
   }, [currentUser]);
 
-  const addTicket = (eventId, status = 'paid') => {
-    const newTicket = {
-      _id: Date.now().toString(),
-      eventId,
-      status,
-      purchaseDate: new Date().toISOString(),
-    };
-    setTickets((prev) => [...prev, newTicket]);
-  };
-
-  const updateTicketStatus = (ticketId, newStatus) => {
-    setTickets((prev) =>
-      prev.map((ticket) => (ticket._id === ticketId ? { ...ticket, status: newStatus } : ticket))
-    );
-  };
-
-  const removeTicket = (ticketId) => {
-    setTickets((prev) => prev.filter((t) => t._id !== ticketId));
+  // Called after a successful purchase; merges new ticket into local state
+  const addTicketLocally = (ticket) => {
+    setTickets(prev => [...prev, ticket]);
   };
 
   const value = {
     tickets,
-    addTicket,
-    updateTicketStatus,
-    removeTicket,
+    addTicketLocally,
   };
 
   return <MyTicketsContext.Provider value={value}>{children}</MyTicketsContext.Provider>;
